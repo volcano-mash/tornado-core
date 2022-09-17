@@ -60,7 +60,7 @@
     "truffle-flattener": "^1.4.2",
     "web3": "^1.3.4",
     "web3-utils": "^1.3.4",
-    "websnark": "^0.0.5",
+    "wasmsnark": "^0.0.10",
     "yargs": "^17.5.1"
   }
 }

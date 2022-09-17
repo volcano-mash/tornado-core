@@ -11,9 +11,9 @@ const Token = artifacts.require('./ERC20Mock.sol')
 const USDTToken = artifacts.require('./IUSDT.sol')
 const { ETH_AMOUNT, TOKEN_AMOUNT, MERKLE_TREE_HEIGHT, ERC20_TOKEN } = process.env
 
-const websnarkUtils = require('websnark/src/utils')
-const buildGroth16 = require('websnark/src/groth16')
-const stringifyBigInts = require('websnark/tools/stringifybigint').stringifyBigInts
+const wasmsnarkUtils = require('wasmsnark/src/utils')
+const buildGroth16 = require('wasmsnark/src/groth16')
+const stringifyBigInts = require('wasmsnark/tools/stringifybigint').stringifyBigInts
 const snarkjs = require('snarkjs')
 const bigInt = snarkjs.bigInt
 const crypto = require('crypto')
@@ -138,8 +138,8 @@ contract('ERC20Tornado', (accounts) => {
         pathIndices: pathIndices,
       })
 
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
 
       const balanceTornadoBefore = await token.balanceOf(tornado.address)
       const balanceRelayerBefore = await token.balanceOf(relayer)
@@ -220,8 +220,8 @@ contract('ERC20Tornado', (accounts) => {
         pathIndices: pathIndices,
       })
 
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
 
       const balanceTornadoBefore = await token.balanceOf(tornado.address)
       const balanceRelayerBefore = await token.balanceOf(relayer)
@@ -294,8 +294,8 @@ contract('ERC20Tornado', (accounts) => {
         pathIndices: pathIndices,
       })
 
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
 
       const args = [
         toFixedHex(input.root),
@@ -363,8 +363,8 @@ contract('ERC20Tornado', (accounts) => {
         pathIndices: pathIndices,
       })
 
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
 
       const balanceTornadoBefore = await usdtToken.balanceOf(tornado.address)
       const balanceRelayerBefore = await usdtToken.balanceOf(relayer)
@@ -450,8 +450,8 @@ contract('ERC20Tornado', (accounts) => {
         pathIndices: pathIndices,
       })
 
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
 
       const balanceTornadoBefore = await token.balanceOf(tornado.address)
       const balanceRelayerBefore = await token.balanceOf(relayer)

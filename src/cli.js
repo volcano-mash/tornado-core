@@ -12,8 +12,8 @@ const circomlib = require('circomlib')
 const bigInt = snarkjs.bigInt
 const merkleTree = require('fixed-merkle-tree')
 const Web3 = require('web3')
-const buildGroth16 = require('websnark/src/groth16')
-const websnarkUtils = require('websnark/src/utils')
+const buildGroth16 = require('wasmsnark').buildGroth16
+const wasmsnarkUtils = require('wasmsnark/src/utils')
 const { toWei, fromWei, toBN, BN } = require('web3-utils')
 const config = require('./config')
 const program = require('commander')
@@ -169,8 +169,8 @@ async function generateProof({ deposit, recipient, relayerAddress = 0, fee = 0, 
 
   console.log('Generating SNARK proof')
   console.time('Proof time')
-  const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-  const { proof } = websnarkUtils.toSolidityInput(proofData)
+  const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+  const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
   console.timeEnd('Proof time')
 
   const args = [

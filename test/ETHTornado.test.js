@@ -8,9 +8,9 @@ const { takeSnapshot, revertSnapshot } = require('../scripts/ganacheHelper')
 const Tornado = artifacts.require('./ETHTornado.sol')
 const { ETH_AMOUNT, MERKLE_TREE_HEIGHT } = process.env
 
-const websnarkUtils = require('websnark/src/utils')
-const buildGroth16 = require('websnark/src/groth16')
-const stringifyBigInts = require('websnark/tools/stringifybigint').stringifyBigInts
+const wasmsnarkUtils = require('wasmsnark/src/utils')
+const buildGroth16 = require('wasmsnark/src/groth16')
+const stringifyBigInts = require('wasmsnark/tools/stringifybigint').stringifyBigInts
 const unstringifyBigInts2 = require('snarkjs/src/stringifybigint').unstringifyBigInts
 const snarkjs = require('snarkjs')
 const bigInt = snarkjs.bigInt
@@ -128,7 +128,7 @@ contract('ETHTornado', (accounts) => {
         pathIndices: pathIndices,
       })
 
-      let proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      let proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
       const originalProof = JSON.parse(JSON.stringify(proofData))
       let result = snarkVerify(proofData)
       result.should.be.equal(true)
@@ -189,8 +189,8 @@ contract('ETHTornado', (accounts) => {
         pathIndices: pathIndices,
       })
 
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
 
       const balanceTornadoBefore = await web3.eth.getBalance(tornado.address)
       const balanceRelayerBefore = await web3.eth.getBalance(relayer)
@@ -249,8 +249,8 @@ contract('ETHTornado', (accounts) => {
         pathElements: pathElements,
         pathIndices: pathIndices,
       })
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
       const args = [
         toFixedHex(input.root),
         toFixedHex(input.nullifierHash),
@@ -283,8 +283,8 @@ contract('ETHTornado', (accounts) => {
         pathElements: pathElements,
         pathIndices: pathIndices,
       })
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
       const args = [
         toFixedHex(input.root),
         toFixedHex(
@@ -321,8 +321,8 @@ contract('ETHTornado', (accounts) => {
         pathIndices: pathIndices,
       })
 
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
       const args = [
         toFixedHex(input.root),
         toFixedHex(input.nullifierHash),
@@ -355,8 +355,8 @@ contract('ETHTornado', (accounts) => {
         pathIndices: pathIndices,
       })
 
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
 
       const args = [
         toFixedHex(randomHex(32)),
@@ -389,8 +389,8 @@ contract('ETHTornado', (accounts) => {
         pathElements: pathElements,
         pathIndices: pathIndices,
       })
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      let { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      let { proof } = wasmsnarkUtils.toSolidityInput(proofData)
       const args = [
         toFixedHex(input.root),
         toFixedHex(input.nullifierHash),
@@ -466,8 +466,8 @@ contract('ETHTornado', (accounts) => {
         pathIndices: pathIndices,
       })
 
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
 
       const args = [
         toFixedHex(input.root),
@@ -510,8 +510,8 @@ contract('ETHTornado', (accounts) => {
         pathIndices: pathIndices,
       })
 
-      const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-      const { proof } = websnarkUtils.toSolidityInput(proofData)
+      const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+      const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
 
       const args = [
         toFixedHex(input.root),

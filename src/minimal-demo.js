@@ -5,8 +5,8 @@ const crypto = require('crypto')
 const circomlib = require('circomlib')
 const merkleTree = require('fixed-merkle-tree')
 const Web3 = require('web3')
-const buildGroth16 = require('websnark/src/groth16')
-const websnarkUtils = require('websnark/src/utils')
+const buildGroth16 = require('wasmsnark/src/groth16')
+const wasmsnarkUtils = require('wasmsnark/src/utils')
 const { toWei } = require('web3-utils')
 
 let web3, contract, netId, circuit, proving_key, groth16
@@ -137,8 +137,8 @@ async function generateSnarkProof(deposit, recipient) {
   }
 
   console.log('Generating SNARK proof...')
-  const proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
-  const { proof } = websnarkUtils.toSolidityInput(proofData)
+  const proofData = await wasmsnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key)
+  const { proof } = wasmsnarkUtils.toSolidityInput(proofData)
 
   const args = [
     toHex(input.root),
